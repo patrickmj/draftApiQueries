@@ -1,24 +1,40 @@
 /* 
- * First passes as possible API query and response structures
+ * Initial passes as possible API query and response structures
  * for various Northeastern Library DH projects
  * 
  * 
  * 
  */
-// Work / Item data
-// /item/{id}
+// Work data
+// /work/{id}
 
-var itemResponse = {
+var workResponse = {
     "id" : 'id',
-    "uri" : 'item uri',
+    "uri" : 'work uri',
     "collectionId" : 'collectionId',
-    // mimeType needs a philosophical choice vis a vis representations. If the item is the
-    // file uploaded, then it makes sense here. If the item is treated more like a
-    // frbr:Work as an abstraction, then mime types should only be reported
-    // for actual files
-    "mimeType" : '',
+    /* I'm not 100% happy with the name of genre, but that's what
+     * we've been using so far.
+     * It replaces and expands the mimeType signal
+     * @TODO This is a question of both naming and conceptualization
+     * to figure out
+     * Options include using DCMI Types, an internal enum list (maybe w/ namespaces?), other?
+     *  */
+    "genre" : '',
+
     // it's conceivable that metada could come from many different sources for one render
     "metadata" : {
+        /* dublinCoreBasics is there to give the minimal info for
+         * a browse display
+         * @TODO have DSG and Digital Exhibits folks figure out
+         * what should be here
+         * Specialized cases like ETD might need special exceptions, requiring
+         * digging into mods or other */
+        "dublinCoreBasics" : {},
+        
+        /* Open question of whether mods just contains everything as extensions
+         * which sounds better for faceting
+         * Separating schemas out has other utility, though */
+        
         "mods" : {}, // mods object mostly as it now exists
         // ... below are hypothetical other metadata formats
         // the key would point to how to process/render in payload
@@ -64,6 +80,15 @@ var itemResponse = {
     // as with the assets above, there's also a possibility that they could come
     // from more than one data source
     "representations" : {
+        
+        /* sourceRepresentation reflects the move away from the primary
+         * content object being the full thing
+         * An open question is whether this just grabs whatever was uploaded,
+         * or if there's a completely new endpoing for metadata etc about it
+         * @TODO: compare API structures against PCDM model
+         *  */  
+        "sourceRepresentation" : '',
+        
         "thumbnails" : [
             {"url" : '', "mimeType" : ''}
             // .....
@@ -93,40 +118,31 @@ var searchResponse = {
             "next" : '', //url to next page with GET params. convenient sugar to give me the next page without calculating it. Probably doesn't matter where it's calculated
             "prev" : '' // same as above
         },
-        "items" : [
+        "works" : [
             { "id" : '', //
               "uri" : '', // endpoint to get full item data as above
-              // mimeType needs a philosophical choice vis a vis representations. If the item is the
-              // file uploaded, then it makes sense here. If the item is treated more like a
-              // frbr:Work as an abstraction, then mime types should only be reported
-              // for actual files
-              "mimeType" : '',  
-              "title" : '',
-              // not sure what can be normalized to expose at this level,
-              // of if there's a need to dive deeper into MODS data here
-              // (which would make the payload quite large)
-              "creators" : [
-                  // array of creator names
-                  // needs a way to distinguish primary author when needed
-                  // also special cases to consider, ala ETD data
-              ],
-              "contributors" : [
-                  
-              ],
                // statement of status in a workflow, publication status, etc.
                // might be thought of as a superset of permissions
                
+               
+              /* @TODO: figure out what status means vis a vis pipelines 
+               * and messaging systems
+               *  */ 
               "status" : '',
-              "dateCreated" : '',
-              "description" : '',
-              "subjects"    : [
-                  
-              ],
-              "thumbnails" : {"small" : '',  // uris to different sized thumbnails.
-                              "medium" : '', // depending on system queried, could be direct images, generated on-the-fly images,
-                              "large" : ''   // or IIIF params
-                             }
-                
+              
+              /* As above, a @TODO of figuring out what the 
+               * concise metadata to display should be
+               * (not sure if stuffing it into DC is 
+               * the best option) */
+              "dublinCoreMetadata" : {},
+              
+              /* I don't like "representations" meaning different things
+               * here as opposed to the work response above
+               *  */
+              "representations" : {"small" : '',  // uris to different sized thumbnails.
+                                    "medium" : '', // depending on system queried, could be direct images, generated on-the-fly images,
+                                    "large" : ''   // or IIIF params
+                                   }
             }
             // ...
         ]
