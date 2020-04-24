@@ -30,6 +30,11 @@ var workResponse = {
          * Specialized cases like ETD might need special exceptions, requiring
          * digging into mods or other */
         "dublinCoreBasics" : {},
+        "lastUpdated" : 'date',
+        /* 
+         * How to handle crazy things like LATEX??
+         * insert JS to deal with markdown?
+         */
         
         /* Open question of whether mods just contains everything as extensions
          * which sounds better for faceting
@@ -41,6 +46,7 @@ var workResponse = {
         // an alternative approach would be to normalize everything into MODS, or some other patois
         "vraCore"     : {},
         "dpla"        : {},
+        "europeana"   : {},
         "wikidata"    : {},
         "geoNamesRdf" : {}
         // etc for whatever else that might be stuffed into a metadata standard
@@ -88,6 +94,11 @@ var workResponse = {
          * @TODO: compare API structures against PCDM model
          *  */  
         "sourceRepresentation" : '',
+        
+        "textType" : {
+            "type" : 'markdown',
+            "content" : 'blah'
+        }
         
         "thumbnails" : [
             {"url" : '', "mimeType" : ''}
