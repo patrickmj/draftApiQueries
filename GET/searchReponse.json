@@ -1,8 +1,8 @@
 
 // Search results data (mostly facets + pointers to Work/Item data?)
 // /search/items/{?facets='', ?title='', ?collectionId='', ...}
-var searchResponse = {
-        "pagination": {
+{
+        "pagination": { //I've also seen this live in HTTP headers. Is that a worthwhile direction?
             "page": '', 
             "totalPages": '', 
             "limit" : '',
@@ -22,7 +22,7 @@ var searchResponse = {
                *  */ 
               "status" : '',
               
-              /* As above, a @TODO of figuring out what the 
+              /* As with works, a @TODO of figuring out what the 
                * concise metadata to display should be
                * (not sure if stuffing it into DC is 
                * the best option) */
@@ -31,10 +31,10 @@ var searchResponse = {
               /* I don't like "representations" meaning different things
                * here as opposed to the work response above
                *  */
-              "representations" : {"small" : '',  // uris to different sized thumbnails.
-                                    "medium" : '', // depending on system queried, could be direct images, generated on-the-fly images,
-                                    "large" : ''   // or IIIF params
-                                   }
+              "thumbnails" : {"small" : '',  // uris to different sized thumbnails.
+                              "medium" : '', // depending on system queried, could be direct images, generated on-the-fly images,
+                               "large" : ''   // or IIIF params
+                              }
             }
             // ...
         ]
