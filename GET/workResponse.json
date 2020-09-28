@@ -2,13 +2,14 @@
     "id" : 'id',
     "uri" : 'work uri',
     "collectionId" : 'collectionId',
-    /* I'm not 100% happy with the name of genre, but that's what
+    
+    /* I'm not 100% happy with the name genre, but that's what
      * we've been using so far.
      * It replaces and expands the mimeType signal
      * @TODO This is a question of both naming and conceptualization
      * to figure out
      * Options include using DCMI Types, an internal enum list (maybe w/ namespaces?), other?
-     *  */
+     */
     "genre" : '',
 
     // it's conceivable that metada could come from many different sources for one render
@@ -21,6 +22,7 @@
          * digging into mods or other */
         "dublinCoreBasics" : {},
         "lastUpdated" : 'date',
+        "solr": {},
         /* 
          * How to handle crazy things like LATEX??
          * insert JS to deal with markdown?
@@ -30,15 +32,16 @@
          * which sounds better for faceting
          * Separating schemas out has other utility, though */
         
-        "mods" : {}, // mods object mostly as it now exists
+        "mods" : 'query uri to MODS data', // mods object mostly as it now exists
         // ... below are hypothetical other metadata formats
         // the key would point to how to process/render in payload
         // an alternative approach would be to normalize everything into MODS, or some other patois
-        "vraCore"     : {},
-        "dpla"        : {},
-        "europeana"   : {},
-        "wikidata"    : {},
-        "geoNamesRdf" : {}
+        "dublinCoreFull" : {}, // or would this be in mods?
+        "vraCore"        : {},
+        "dpla"           : {},
+        "europeana"      : {},
+        "wikidata"       : {},
+        "geoNamesRdf"    : {}
         // etc for whatever else that might be stuffed into a metadata standard
     },
     
@@ -61,7 +64,7 @@
         ],
         
         "cdns" : [
-            'url to csn' // not sure if this should be distinct from jsUrls above    
+            'url to cdn' // not sure if this should be distinct from jsUrls above    
         ],
         // it's unlikely that there would be more than one xsl, but possible, and keeping the array
         // structure consistent might be helpful

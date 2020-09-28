@@ -42,9 +42,4 @@ var searchResponse = {
 }
 
 
-// Collection data from DRS (is this closely analogous to Project level?)
-// I imagine this as a blend of search and item, in that there will be metadata 
-// about collections, like items, but also an abbreviated list of items, like search
-// /collection/{id} GET params?
-
 
