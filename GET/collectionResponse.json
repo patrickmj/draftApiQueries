@@ -3,3 +3,56 @@
 // about collections, like items, but also an abbreviated list of items, like search
 // /collection/{id} GET params?
 
+{
+   "id" : 'id',
+    "uri" : 'collection uri',
+
+
+    "metadata" : {
+        /* dublinCoreBasics is there to give the minimal info for
+         * a browse display
+         * @TODO have DSG and Digital Exhibits folks figure out
+         * what should be here
+        "dublinCoreBasics" : {},
+        "lastUpdated" : 'date',
+        "dublinCoreFull" : {}, // or would this be in mods?
+
+        
+    },
+    "pagination": { //I've also seen this live in HTTP headers. Is that a worthwhile direction?
+        "page": '', 
+        "totalPages": '', 
+        "limit" : '',
+        "currentPage" : '',
+        "next" : '', //url to next page with GET params. convenient sugar to give me the next page without calculating it. Probably doesn't matter where it's calculated
+        "prev" : '' // same as above
+    },
+    
+    "works" : [
+        { "id"  : '', //
+          "uri" : '', // endpoint to get full item data as from works
+           // statement of status in a workflow, publication status, etc.
+           // might be thought of as a superset of permissions
+           
+           
+          /* @TODO: figure out what status means vis a vis pipelines 
+           * and messaging systems
+           *  */ 
+          "status" : '',
+          
+          /* As with works, a @TODO of figuring out what the 
+           * concise metadata to display should be
+           * (not sure if stuffing it into DC is 
+           * the best option) */
+          "dublinCoreBasics" : {},
+          
+          "thumbnails" : {"small" : '',  // uris to different sized thumbnails.
+                          "medium" : '', // depending on system queried, could be direct images, generated on-the-fly images,
+                           "large" : ''   // or IIIF params
+                          }
+        }
+        // ...
+    
+    ]
+    
+}

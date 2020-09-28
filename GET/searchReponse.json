@@ -1,5 +1,5 @@
 
-// Search results data (mostly facets + pointers to Work/Item data?)
+ 
 // /search/items/{?facets='', ?title='', ?collectionId='', ...}
 {
         "pagination": { //I've also seen this live in HTTP headers. Is that a worthwhile direction?
