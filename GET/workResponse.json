@@ -1,14 +1,4 @@
-/* 
- * Initial passes as possible API query and response structures
- * for various Northeastern Library DH projects
- * 
- * 
- * 
- */
-// Work data
-// /work/{id}
-
-var workResponse = {
+{
     "id" : 'id',
     "uri" : 'work uri',
     "collectionId" : 'collectionId',
@@ -118,53 +108,3 @@ var workResponse = {
     
     
 }
-
-// Search results data (mostly facets + pointers to Work/Item data?)
-// /search/items/{?facets='', ?title='', ?collectionId='', ...}
-var searchResponse = {
-        "pagination": {
-            "page": '', 
-            "totalPages": '', 
-            "limit" : '',
-            "currentPage" : '',
-            "next" : '', //url to next page with GET params. convenient sugar to give me the next page without calculating it. Probably doesn't matter where it's calculated
-            "prev" : '' // same as above
-        },
-        "works" : [
-            { "id" : '', //
-              "uri" : '', // endpoint to get full item data as above
-               // statement of status in a workflow, publication status, etc.
-               // might be thought of as a superset of permissions
-               
-               
-              /* @TODO: figure out what status means vis a vis pipelines 
-               * and messaging systems
-               *  */ 
-              "status" : '',
-              
-              /* As above, a @TODO of figuring out what the 
-               * concise metadata to display should be
-               * (not sure if stuffing it into DC is 
-               * the best option) */
-              "dublinCoreMetadata" : {},
-              
-              /* I don't like "representations" meaning different things
-               * here as opposed to the work response above
-               *  */
-              "representations" : {"small" : '',  // uris to different sized thumbnails.
-                                    "medium" : '', // depending on system queried, could be direct images, generated on-the-fly images,
-                                    "large" : ''   // or IIIF params
-                                   }
-            }
-            // ...
-        ]
-    
-}
-
-
-// Collection data from DRS (is this closely analogous to Project level?)
-// I imagine this as a blend of search and item, in that there will be metadata 
-// about collections, like items, but also an abbreviated list of items, like search
-// /collection/{id} GET params?
-
-
