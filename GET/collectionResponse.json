@@ -16,6 +16,7 @@
         "dublinCoreBasics" : {},
         "lastUpdated" : 'date',
         "dublinCoreFull" : {}, // or would this be in mods?
+        "solr": {} //does this exist for collections?
 
         
     },
